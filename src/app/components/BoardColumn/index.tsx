@@ -1,13 +1,17 @@
+"use client"
 import React, { FC } from 'react'
 import { BoardColumnProps } from './interface'
 import Card from '../Card'
 
-const BoardColumn: FC<BoardColumnProps> = ({ title }) => {
+const BoardColumn: FC<BoardColumnProps> = ({ title, data }) => {
   return (
-    <div className="w-1/3 bg-gray-200 p-4 rounded-md">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <Card id={1} title="Example Task 1" description='test 1' status='pending' />
-      <Card id={2} title="Example Task 2" description='test 2' status='done' />
+    <div className="w-1/3 bg-gray-200 p-4 rounded-md min-h-dvh">
+      <h2 className="text-xl font-bold mb-4 text-center bg-red-300">{title}</h2>
+      <div className='w-full gap-5 flex-col h-full w-full'>
+        {
+          data && data.map((cardDetails: any) => <Card id={cardDetails.id} title={cardDetails.title} description={cardDetails.description} status={cardDetails.status} />)
+        }
+      </div>
     </div>
   )
 }

@@ -1,15 +1,22 @@
+"use client"
 import React, { FC } from 'react'
 import { CardProps } from './interface'
 
 const Card: FC<CardProps> = ({ id, title, description, status }) => {
   return (
-    <div>
-      <ul>
-        <li>ID: {id}</li>
-        <li>Title: {title}</li>
-        <li>Description: {description}</li>
-        <li>Status: {status}</li>
-      </ul>
+    <div className='w-3/4 h-5 border rounded-md bg-white h-[100px] m-1 flex-col items-between p-2'>
+      <div className='flex gap-1'>
+        <span>{id}</span>
+        <h2>{title}</h2>
+      </div>
+      <div>
+        <div>
+          <p>{description}</p>
+        </div>
+        <div className='flex justify-end p-2'>
+          <span>{status}</span>
+        </div>
+      </div>
     </div>
   )
 }
