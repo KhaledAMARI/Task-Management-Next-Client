@@ -9,7 +9,7 @@ const BoardColumn: FC<BoardColumnProps> = ({ title, data }) => {
       <h2 className="text-xl font-bold mb-4 text-center bg-red-300">{title}</h2>
       <div className='w-full gap-5 flex-col h-full w-full'>
         {
-          data && data.map((cardDetails: any) => <Card id={cardDetails.id} title={cardDetails.title} description={cardDetails.description} status={cardDetails.status} />)
+          data && data.map((cardDetails: any) => <Card key={cardDetails.id} id={cardDetails.id} title={cardDetails.title} description={cardDetails.description} status={cardDetails.status} />)
         }
       </div>
     </div>

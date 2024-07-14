@@ -4,7 +4,7 @@ import { CardProps } from './interface'
 
 const Card: FC<CardProps> = ({ id, title, description, status }) => {
   return (
-    <div className='w-3/4 h-5 border rounded-md bg-white h-[100px] m-1 flex-col items-between p-2'>
+    <div className='w-3/4 h-5 border rounded-md bg-white h-[100px] m-1 flex-col items-between p-2 text-black'>
       <div className='flex gap-1'>
         <span>{id}</span>
         <h2>{title}</h2>
