@@ -1,12 +1,15 @@
 "use client"
 import React from 'react'
 import BoardColumn from '../BoardColumn'
+import {useTaskStore} from '@/app/store'
 
-const Board = ({ data }: any) => {
+const Board = () => {
+  const tasks = useTaskStore((state: any) => state.tasks);
+  console.log("🚀 ~ Board ~ tasks:", tasks)
   const columns = [
-    { title: 'PENDING', cards: data?.filter((d: any) => d.status.toLowerCase() === 'pending') },
-    { title: 'IN PROGRESS', cards: data?.filter((d: any) => d.status.toLowerCase() === 'in-progress') },
-    { title: 'DONE', cards: data?.filter((d: any) => d.status.toLowerCase() === 'done') }
+    { title: 'PENDING', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'pending') },
+    { title: 'IN PROGRESS', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'in-progress') },
+    { title: 'DONE', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'done') }
   ];
 
   return (

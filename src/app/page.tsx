@@ -1,32 +1,17 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Board from "./components/Board";
-import { DataProps } from "./interface";
+import { getTasks } from "./services/tasks";
+import {useTaskStore} from "./store";
 
 export default function Home() {
-  const initialData = { data: null, meta: null };
-  const [data, setData] = useState<DataProps>(initialData);
-
+  const setTasks = useTaskStore((state: any) => state.setTasks);
+  const tasks = useTaskStore((state: any) => state.tasks);
+  
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch('http://localhost:4000/tasks', {
-          headers: {
-            'Content-Type': 'application/json'
-        }
-        });
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const result = await res.json();
-        setData(result);
-        
-      } catch (error) {
-        console.log(`HTTP error!: ${error}`);
-      }
+    if (tasks.data.length === 0) {
+      getTasks().then((response) => response?.data.length > 0 && setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
     }
-
-    fetchData();
   }, []);
 
   return (
@@ -34,7 +19,7 @@ export default function Home() {
       <div>
         <h1>Task Management Board</h1>
       </div>
-      <Board data={data?.data} />
+      <Board />
     </main>
   );
 }
