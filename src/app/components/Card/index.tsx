@@ -44,7 +44,6 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
       getTasks().then((response) => setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
     }
     
-    console.log('response = ' + JSON.stringify(response));
   };
   return (
     <div ref={cardContainer} onClick={e => console.log('first')} className='w-3/4 h-5 border rounded-md bg-white h-[100px] m-1 flex-col items-between p-2 text-black hover:cursor-pointer relative'>

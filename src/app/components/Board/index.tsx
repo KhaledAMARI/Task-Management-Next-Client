@@ -5,7 +5,6 @@ import {useTaskStore} from '@/app/store'
 
 const Board = () => {
   const tasks = useTaskStore((state: any) => state.tasks);
-  console.log("🚀 ~ Board ~ tasks:", tasks)
   const columns = [
     { title: 'PENDING', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'pending') },
     { title: 'IN PROGRESS', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'in-progress') },
