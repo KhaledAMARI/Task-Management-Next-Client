@@ -6,8 +6,7 @@ export const getTasks = async () => {
                 'Content-Type': 'application/json',
             }
         }
-        //TODO: use env variables
-        const response = await fetch('http://localhost:4000/tasks', options);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_API_URI}/tasks`, options);
         if (!response.ok) {
             console.log('An Error has occurred: Cannot get data from server');
         }
