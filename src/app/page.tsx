@@ -4,6 +4,9 @@ import { useRouter } from 'next/navigation';
 import Board from "./components/Board";
 import { getTasks } from "./services/tasks";
 import {useTaskStore} from "./store";
+import * as data from './data.json';
+import { TasksProps } from "./store/interface";
+console.log("🚀 ~ data:", Array.from(data))
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +17,19 @@ export default function Home() {
   
   useEffect(() => {
     if (tasks.data.length === 0) {
-      getTasks().then((response) => response?.data.length > 0 && setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
+      const apiResponse = {
+        data: Array.from(data),
+        meta: {
+          hasNextPage: false,
+          hasPreviousPage: false,
+          itemCount: 0,
+          page: 0,
+          pageCount: 0,
+          take: 0,
+        }
+      };
+      setTasks(apiResponse);
+      // getTasks().then((response) => response?.data.length > 0 && setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
     }
   }, []);
 
