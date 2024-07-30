@@ -4,9 +4,6 @@ import { useRouter } from 'next/navigation';
 import Board from "./components/Board";
 import { getTasks } from "./services/tasks";
 import {useTaskStore} from "./store";
-import * as data from './data.json';
-import { TasksProps } from "./store/interface";
-console.log("🚀 ~ data:", Array.from(data))
 
 export default function Home() {
   const router = useRouter();
@@ -17,25 +14,19 @@ export default function Home() {
   
   useEffect(() => {
     if (tasks.data.length === 0) {
-      const apiResponse = {
-        data: Array.from(data),
-        meta: {
-          hasNextPage: false,
-          hasPreviousPage: false,
-          itemCount: 0,
-          page: 0,
-          pageCount: 0,
-          take: 0,
-        }
-      };
-      setTasks(apiResponse);
-      // getTasks().then((response) => response?.data.length > 0 && setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
+      getTasks().then((response) => {
+        response?.data.length > 0 && setTasks(response);
+      }).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
     }
   }, []);
 
   const handleTaskTypeSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     setTaskType(e.target.value);
-    router.push('/create-task');
+    const data = {
+      taskStatus: JSON.stringify(e.target.value),
+    };
+    const queryString = new URLSearchParams(data).toString();
+    router.push(`/create-task?${queryString}`);
   }
 
   return (
