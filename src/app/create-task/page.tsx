@@ -1,21 +1,20 @@
 "use client"
-import React, { ChangeEvent, FormEventHandler, useState } from 'react'
+import React, { ChangeEvent, FormEventHandler, Suspense, useState } from 'react'
 import { createTask, getTasks } from '../services/tasks';
 import { NewTaskProps } from './interface';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTaskStore } from '../store';
 
 const CreateTask = () => {
-  const router = useRouter();
-  const useParams = useSearchParams();
-  const taskStatus = useParams.get('taskStatus');
+  const searchParams = useSearchParams();
+  const taskStatus = searchParams.get('taskStatus') as 'pending' | 'in-progress' | 'done';
   const setTasks = useTaskStore((state: any) => state.setTasks);
+  const router = useRouter();
 
   const initialTask:NewTaskProps = {
     title: '',
     description: '',
-    //@ts-ignore
-    status: taskStatus
+    status: taskStatus || 'pending'
   };
   
   const [newTask, setNewTask] = useState(initialTask)
