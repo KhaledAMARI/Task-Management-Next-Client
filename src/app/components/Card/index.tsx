@@ -34,11 +34,8 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
 
   const handleDeletion: MouseEventHandler = async (e) => {
     e.stopPropagation();
-    const response = await fetch(`http://localhost:4000/tasks/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_API_URI}/tasks/${id}`, {
+      method: 'DELETE'
     });
     if (response.ok) {
       getTasks().then((response) => setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
