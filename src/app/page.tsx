@@ -32,9 +32,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-[#F7F9F2]">
       <div>
-        <h1 className="text-[#10439F] font-bold text-7xl mb-4">Task Management Board</h1>
+        <h1 className="text-[#3468C0] font-bold text-7xl mb-4">Task Management Board</h1>
       </div>
-      <select value={taskType} onChange={handleTaskTypeSelection} className='p-3 bg-[#3AA6B9] text-[#10439F] rounded-lg'>
+      <select value={taskType} onChange={handleTaskTypeSelection} className='p-3 bg-[#86B6F6] text-[#10439F] rounded-lg'>
         <option value="" disabled>Add New Task</option>
         <option value="pending">Pending</option>
         <option value="in-progress">In Progress</option>

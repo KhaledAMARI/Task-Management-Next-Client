@@ -4,6 +4,7 @@ import { createTask, getTasks } from '../services/tasks';
 import { NewTaskProps } from './interface';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTaskStore } from '../store';
+import './style.css';
 
 const CreateTask = () => {
   const searchParams = useSearchParams();
@@ -45,22 +46,22 @@ const CreateTask = () => {
       <div className='w-full min-h-full justify-center items-center'>
         <form className='border rounded-md bg-gray-200 flex-col gap-5 p-2 my-0 mx-auto min-h-96 w-1/2 text-center font-bold' onSubmit={handleSubmit} onReset={handleReset}>
           <div className='mb-36'>
-            <div className='flex gap-5 mb-5'>
-              <label className='w-1/3 flex justify-start items-center' htmlFor='title'>Title</label>
-              <input className='w-2/3 font-normal outline-0 p-2 rounded-md' type='text' id='title' name='title' value={newTask.title} onChange={handleInput} required />
+            <div className='mb-5'>
+              <label className='w-1/3 flex justify-start items-center mb-2 text-sm font-bold' htmlFor='title'>Title</label>
+              <input type="text" id="title" name="title" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-normal" placeholder="Task Title"  value={newTask.title} onChange={handleInput} required />
             </div>
-            <div className='flex gap-7 mb-5 w-full'>
+            <div className='gap-7 mb-5 w-full'>
               <label className='w-1/3 flex justify-start items-center' htmlFor='description'>Description</label>
-              <textarea id='description' name='description' rows={2} value={newTask.description} onChange={handleInput} required className="font-normal outline-0 block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a Description here..."></textarea>
+              <textarea id='description' name='description' rows={2} value={newTask.description} onChange={handleInput} required className="font-normal outline-0 block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Leave a Description here..." />
             </div>
-            <div className='flex gap-5 mb-5 w-full'>
+            <div className='gap-5 mb-5 w-full'>
             <label htmlFor="status" className="w-1/3 flex justify-start items-center">Status</label>
             <select
               id="status"
               name='status'
               value={newTask.status}
               onChange={handleInput}
-              className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 font-normal"
               required
               >
               <option value="pending">Pending</option>
