@@ -32,7 +32,7 @@ export const createTask: FC<NewTaskProps> = async (newTask) => {
         }
         const response = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_API_URI}/tasks`, options);
         if (!response.ok) {
-            console.log('An Error has occurred: Cannot get data from server');
+            console.log('An Error has occurred: Cannot get data from server', response);
         }
         return await response.json();
     } catch (error) {

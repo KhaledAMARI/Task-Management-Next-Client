@@ -23,7 +23,7 @@ export default function Home() {
   const handleTaskTypeSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     setTaskType(e.target.value);
     const data = {
-      taskStatus: JSON.stringify(e.target.value),
+      taskStatus: e.target.value,
     };
     const queryString = new URLSearchParams(data).toString();
     router.push(`/create-task?${queryString}`);
