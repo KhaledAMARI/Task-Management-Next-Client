@@ -30,7 +30,7 @@ const CreateTask = () => {
     setNewTask(initialTask);
   }
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setNewTask(prevState => {
       return {
         ...prevState,
@@ -40,26 +40,42 @@ const CreateTask = () => {
   }
 
   return (
-    <div className='flex-col w-full min-h-dvh bg-slate-300 text-slate-800 gap-4'>
-      <h2 className='text-center font-bold text-7xl mb-4'>Create New Task</h2>
-      <form className='border rounded-md bg-gray-400 flex-col gap-5 justify-center items-center p-2 min-h-96 w-1/2 text-center font-bold' onSubmit={handleSubmit} onReset={handleReset}>
-        <div className='flex gap-5 mb-5'>
-          <label className='w-1/3 flex justify-start items-center' htmlFor='title'>Title</label>
-          <input className='w-2/3 font-normal outline-0 p-2 rounded-md' type='text' id='title' name='title' value={newTask.title} onChange={handleInput} required />
-        </div>
-        <div className='flex gap-7 mb-5 w-full'>
-          <label className='w-1/3 flex justify-start items-center' htmlFor='description'>Description</label>
-          <input className='w-2/3 font-normal outline-0 p-2 rounded-md' type='text' id='description' name='description' value={newTask.description} onChange={handleInput} required />
-        </div>
-        <div className='flex gap-5 mb-5 w-full'>
-          <label className='w-1/3 flex justify-start items-center' htmlFor='status'>Status</label>
-          <input className='w-2/3 font-normal outline-0 p-2 rounded-md' type='text' id='status' name='status' value={newTask.status} onChange={handleInput} required />
-        </div>
-        <div className='flex gap-5  mb-5 w-full justify-center items-center'>
-          <button className='outline p-3 rounded' type='submit'>Submit</button>
-          <button className='outline p-3 rounded' type='reset'>Reset</button>
-        </div>
-      </form>
+    <div className='flex-col w-full min-h-dvh bg-[#F7F9F2] text-[#10439F] gap-4'>
+      <h2 className='text-center font-bold text-7xl mb-4 text-[#10439F]'>Create New Task</h2>
+      <div className='w-full min-h-full justify-center items-center'>
+        <form className='border rounded-md bg-gray-200 flex-col gap-5 p-2 my-0 mx-auto min-h-96 w-1/2 text-center font-bold' onSubmit={handleSubmit} onReset={handleReset}>
+          <div className='mb-36'>
+            <div className='flex gap-5 mb-5'>
+              <label className='w-1/3 flex justify-start items-center' htmlFor='title'>Title</label>
+              <input className='w-2/3 font-normal outline-0 p-2 rounded-md' type='text' id='title' name='title' value={newTask.title} onChange={handleInput} required />
+            </div>
+            <div className='flex gap-7 mb-5 w-full'>
+              <label className='w-1/3 flex justify-start items-center' htmlFor='description'>Description</label>
+              <textarea id='description' name='description' rows={2} value={newTask.description} onChange={handleInput} required className="font-normal outline-0 block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a Description here..."></textarea>
+            </div>
+            <div className='flex gap-5 mb-5 w-full'>
+            <label htmlFor="status" className="w-1/3 flex justify-start items-center">Status</label>
+            <select
+              id="status"
+              name='status'
+              value={newTask.status}
+              onChange={handleInput}
+              className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              >
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+            </div>
+          </div>
+          <div className='flex gap-5 mb-0 mt-5 w-full justify-center items-center'>
+            <button className='outline p-3 rounded w-1/3' type='submit'>Submit</button>
+            <button className='outline p-3 rounded w-1/3' type='reset'>Reset</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   )
 }
