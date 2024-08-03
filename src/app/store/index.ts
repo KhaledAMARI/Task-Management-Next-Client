@@ -17,4 +17,6 @@ const initialData: TasksProps = {
 export const useTaskStore = create<useTaskStoreProps>((set) => ({
   tasks: initialData,
   setTasks: (tasks) => {set({tasks})},
+  isLoading: false,
+  setIsLoading: (value) => {set({isLoading: value})},
 }));

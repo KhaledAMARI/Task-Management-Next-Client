@@ -50,7 +50,11 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
           {' '} - {' '}
           <h2 className='font-bold'>{title}</h2>
         </div>
-        {isCardHovered && <button onClick={handleDeletion}><DeleteIcon className='absolute top-0 right-2' /></button>}
+        {
+          isCardHovered && <button onClick={handleDeletion}>
+            <DeleteIcon className='absolute top-0 right-2 text-red-600' />
+          </button>
+        }
       </div>
       <div>
         <div className='overflow-hidden max-h-18 text-ellipsis p-4'>

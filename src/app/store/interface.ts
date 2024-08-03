@@ -21,4 +21,6 @@ export interface TasksProps {
 export interface useTaskStoreProps {
     tasks: TasksProps;
     setTasks: (tasks: TasksProps) => void;
+    isLoading: boolean;
+    setIsLoading: (value: boolean) => void;
   }
