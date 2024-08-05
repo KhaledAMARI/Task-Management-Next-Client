@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { TasksProps, useTaskStoreProps } from './interface';
+import { TasksProps, useTaskStoreProps, ToastProps } from './interface';
 
 const initialData: TasksProps = {
   data: [],
@@ -13,10 +13,18 @@ const initialData: TasksProps = {
   }
 }
 
+const initialToastData: ToastProps = {
+  isVisible: false,
+  severity: '',
+  message: '',
+}
+
 
 export const useTaskStore = create<useTaskStoreProps>((set) => ({
   tasks: initialData,
   setTasks: (tasks) => {set({tasks})},
   isLoading: false,
   setIsLoading: (value) => {set({isLoading: value})},
+  toastData: initialToastData,
+  setToastData: (value: ToastProps) => {set({toastData: value})}
 }));

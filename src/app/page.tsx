@@ -6,11 +6,12 @@ import { getTasks } from "./services/tasks";
 import {useTaskStore} from "./store";
 import { useTaskStoreProps } from "./store/interface";
 import Loader from "./components/Loader";
+import Toast from "./components/Toast";
 
 export default function Home() {
   const router = useRouter();
 
-  const { tasks, setTasks, isLoading, setIsLoading } = useTaskStore((state: useTaskStoreProps) => state);
+  const { tasks, setTasks, isLoading, setIsLoading, toastData } = useTaskStore((state: useTaskStoreProps) => state);
   const [taskType, setTaskType] = useState('');
   
   useEffect(() => {
@@ -47,6 +48,9 @@ export default function Home() {
         </select>
         <Board />
       </main>
+      {
+          toastData.isVisible && <Toast severity={toastData.severity} message={toastData.message}/>
+      }
     </>
   );
 }

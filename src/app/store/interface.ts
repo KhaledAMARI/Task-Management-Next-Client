@@ -17,10 +17,18 @@ export interface TasksProps {
     }
 }
 
+export interface ToastProps {
+    isVisible: boolean;
+    severity: string;
+    message: string;
+}
+
 
 export interface useTaskStoreProps {
     tasks: TasksProps;
     setTasks: (tasks: TasksProps) => void;
     isLoading: boolean;
     setIsLoading: (value: boolean) => void;
+    toastData: ToastProps;
+    setToastData: (value: ToastProps) => void;
   }

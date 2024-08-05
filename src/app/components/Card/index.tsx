@@ -4,11 +4,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { CardProps } from './interface'
 import { useTaskStore } from '@/app/store';
 import { getTasks } from '@/app/services/tasks';
+import { useTaskStoreProps } from '@/app/store/interface';
 
 const Card: FC<CardProps> = ({ id, title, description, status }) => {
   const [isCardHovered, setIsCardHovered] = useState<boolean>(false);
   const cardContainer = useRef<HTMLDivElement>(null);
-  const setTasks = useTaskStore((state: any) => state.setTasks);
+  const {setTasks, setToastData} = useTaskStore((state: useTaskStoreProps) => state);
 
   useEffect(() => {
     const cardContainerElement = cardContainer?.current;
@@ -38,7 +39,14 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
       method: 'DELETE'
     });
     if (response.ok) {
+      const toastData = {
+        isVisible: true,
+        severity: 'success',
+        message: 'Task deleted successfully!'
+      }
       getTasks().then((response) => setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
+      
+      setToastData(toastData);
     }
     
   };
