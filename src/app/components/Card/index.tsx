@@ -1,15 +1,17 @@
 "use client"
-import React, { FC, MouseEventHandler, useEffect, useRef, useState } from 'react'
+import React, { FC, MouseEventHandler, UIEventHandler, useEffect, useRef, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CardProps } from './interface'
 import { useTaskStore } from '@/app/store';
 import { getTasks } from '@/app/services/tasks';
 import { useTaskStoreProps } from '@/app/store/interface';
+import { useRouter } from 'next/navigation';
 
 const Card: FC<CardProps> = ({ id, title, description, status }) => {
   const [isCardHovered, setIsCardHovered] = useState<boolean>(false);
   const cardContainer = useRef<HTMLDivElement>(null);
   const {setTasks, setToastData} = useTaskStore((state: useTaskStoreProps) => state);
+  const router = useRouter();
 
   useEffect(() => {
     const cardContainerElement = cardContainer?.current;
@@ -45,13 +47,17 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
         message: 'Task deleted successfully!'
       }
       getTasks().then((response) => setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
-      
       setToastData(toastData);
     }
     
   };
+
+  const handleCardClick: UIEventHandler = async (e) => {
+    e.stopPropagation();
+    router.push(`/edit-task/${id}`);
+  }
   return (
-    <div ref={cardContainer} onClick={e => console.log('first')} className='w-3/4 border rounded-md bg-white h-auto m-3 flex-col items-between p-2 text-black hover:cursor-pointer relative'>
+    <div ref={cardContainer} onClick={handleCardClick} className='w-3/4 border rounded-md bg-white h-auto m-3 flex-col items-between p-2 text-black hover:cursor-pointer relative'>
       <div className='relative flex justify-between'>
         <div  onClick={e => console.log('second')} className='flex gap-1 mb-3'>
           <span>{id}</span>
