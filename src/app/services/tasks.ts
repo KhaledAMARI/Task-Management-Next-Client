@@ -3,15 +3,11 @@
 import { FC } from "react";
 import { NewTaskProps } from "../create-task/interface";
 import { TaskProps } from "./interface";
+import { GET_REQUEST_HEADERS } from "../constants";
 
 export const getTasks = async () => {
     try {
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }
+        const options = GET_REQUEST_HEADERS;
         const response = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_API_URI}/tasks`, options);
         if (!response.ok) {
             console.log('An Error has occurred: Cannot get data from server');
@@ -24,12 +20,7 @@ export const getTasks = async () => {
 
 export const getTaskById = async (id: number) => {
     try {
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }
+        const options = GET_REQUEST_HEADERS;
         const response = await fetch(`${process.env.NEXT_PUBLIC_DEFAULT_API_URI}/tasks/${id}`, options);
         if (!response.ok) {
             console.log('An Error has occurred: Cannot get data from server');

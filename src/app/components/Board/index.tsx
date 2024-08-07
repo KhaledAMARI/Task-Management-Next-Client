@@ -2,13 +2,15 @@
 import React from 'react'
 import BoardColumn from '../BoardColumn'
 import {useTaskStore} from '@/app/store'
+import { useTaskStoreProps } from '@/app/store/interface'
+import { DONE_LABEL, DONE_VALUE, INPROGRESS_LABEL, INPROGRESS_VALUE, PENDING_LABEL, PENDING_VALUE } from '@/app/constants'
 
 const Board = () => {
-  const tasks = useTaskStore((state: any) => state.tasks);
+  const tasks = useTaskStore((state: useTaskStoreProps) => state.tasks);
   const columns = [
-    { title: 'PENDING', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'pending') },
-    { title: 'IN PROGRESS', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'in-progress') },
-    { title: 'DONE', cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === 'done') }
+    { title: PENDING_LABEL, cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === PENDING_VALUE) },
+    { title: INPROGRESS_LABEL, cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === INPROGRESS_VALUE) },
+    { title: DONE_LABEL, cards: tasks?.data?.filter((d: any) => d.status.toLowerCase() === DONE_VALUE) }
   ];
 
   return (

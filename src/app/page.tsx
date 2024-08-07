@@ -1,26 +1,31 @@
-"use client"
+"use client";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Board from "./components/Board";
 import { getTasks } from "./services/tasks";
-import {useTaskStore} from "./store";
+import { useTaskStore } from "./store";
 import { useTaskStoreProps } from "./store/interface";
 import Loader from "./components/Loader";
 import Toast from "./components/Toast";
+import { DONE_LABEL, INPROGRESS_LABEL, PENDING_LABEL } from "./constants";
 
 export default function Home() {
   const router = useRouter();
 
-  const { tasks, setTasks, isLoading, setIsLoading, toastData } = useTaskStore((state: useTaskStoreProps) => state);
-  const [taskType, setTaskType] = useState('');
-  
+  const { tasks, setTasks, isLoading, setIsLoading, toastData } = useTaskStore(
+    (state: useTaskStoreProps) => state
+  );
+  const [taskType, setTaskType] = useState("");
+
   useEffect(() => {
     if (tasks.data.length === 0) {
       setIsLoading(true);
-      getTasks().then((response) => {
-        response?.data.length > 0 && setTasks(response);
-      setIsLoading(false);
-      }).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
+      getTasks()
+        .then((response) => {
+          response?.data.length > 0 && setTasks(response);
+          setIsLoading(false);
+        })
+        .catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
     }
   }, []);
 
@@ -31,26 +36,34 @@ export default function Home() {
     };
     const queryString = new URLSearchParams(data).toString();
     router.push(`/create-task?${queryString}`);
-  }
+  };
 
   return (
     <>
       {isLoading && <Loader />}
       <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-[#F7F9F2]">
         <div>
-          <h1 className="text-[#3468C0] font-bold text-7xl mb-4">Task Management Board</h1>
+          <h1 className="text-[#3468C0] font-bold text-7xl mb-4">
+            Task Management Board
+          </h1>
         </div>
-        <select value={taskType} onChange={handleTaskTypeSelection} className='p-3 bg-[#86B6F6] text-[#10439F] rounded-lg'>
-          <option value="" disabled>Add New Task</option>
-          <option value="pending">Pending</option>
-          <option value="in-progress">In Progress</option>
-          <option value="done">Done</option>
+        <select
+          value={taskType}
+          onChange={handleTaskTypeSelection}
+          className="p-3 bg-[#86B6F6] text-[#10439F] rounded-lg"
+        >
+          <option value="" disabled>
+            Add New Task
+          </option>
+          <option value="pending">{PENDING_LABEL}</option>
+          <option value="in-progress">{INPROGRESS_LABEL}</option>
+          <option value="done">{DONE_LABEL}</option>
         </select>
         <Board />
       </main>
-      {
-          toastData.isVisible && <Toast severity={toastData.severity} message={toastData.message}/>
-      }
+      {toastData.isVisible && (
+        <Toast severity={toastData.severity} message={toastData.message} />
+      )}
     </>
   );
 }

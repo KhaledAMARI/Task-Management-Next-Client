@@ -1,30 +1,12 @@
 import { create } from 'zustand';
 import { TasksProps, useTaskStoreProps, ToastProps } from './interface';
-
-const initialData: TasksProps = {
-  data: [],
-  meta: {
-    hasNextPage: false,
-    hasPreviousPage: false,
-    itemCount: 0,
-    page: 0,
-    pageCount: 0,
-    take: 0,
-  }
-}
-
-const initialToastData: ToastProps = {
-  isVisible: false,
-  severity: '',
-  message: '',
-}
-
+import { DEFAULT_TASKS_VALUE, INITIAL_TOAST_DATA } from '../constants';
 
 export const useTaskStore = create<useTaskStoreProps>((set) => ({
-  tasks: initialData,
+  tasks: DEFAULT_TASKS_VALUE,
   setTasks: (tasks) => {set({tasks})},
   isLoading: false,
   setIsLoading: (value) => {set({isLoading: value})},
-  toastData: initialToastData,
+  toastData: INITIAL_TOAST_DATA,
   setToastData: (value: ToastProps) => {set({toastData: value})}
 }));

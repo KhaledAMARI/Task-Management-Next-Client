@@ -6,6 +6,7 @@ import { useTaskStore } from '@/app/store';
 import { getTasks } from '@/app/services/tasks';
 import { useTaskStoreProps } from '@/app/store/interface';
 import { useRouter } from 'next/navigation';
+import { SUCCESS_DELETE_TOAST_DATA } from '@/app/constants';
 
 const Card: FC<CardProps> = ({ id, title, description, status }) => {
   const [isCardHovered, setIsCardHovered] = useState<boolean>(false);
@@ -41,11 +42,7 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
       method: 'DELETE'
     });
     if (response.ok) {
-      const toastData = {
-        isVisible: true,
-        severity: 'success',
-        message: 'Task deleted successfully!'
-      }
+      const toastData = SUCCESS_DELETE_TOAST_DATA;
       getTasks().then((response) => setTasks(response)).catch((error) => console.log("🚀 ~ useEffect ~ error:", error));
       setToastData(toastData);
     }
