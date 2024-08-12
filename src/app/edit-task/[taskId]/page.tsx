@@ -98,7 +98,7 @@ const EditTask = () => {
           <div className="mb-36">
             <div className="mb-5">
               <label
-                className="w-1/3 flex justify-start items-center mb-2 text-sm font-bold"
+                className="w-full flex justify-start items-center mb-2 text-sm font-bold flex-nowrap"
                 htmlFor="title"
               >
                 {TASK_TITLE_LABEL}
@@ -116,7 +116,7 @@ const EditTask = () => {
             </div>
             <div className="gap-7 mb-5 w-full">
               <label
-                className="w-1/3 flex justify-start items-center"
+                className="w-full flex justify-start items-center flex-nowrap"
                 htmlFor="description"
               >
                 {TASK_DESCRIPTION_LABEL}
@@ -135,7 +135,7 @@ const EditTask = () => {
             <div className="gap-5 mb-5 w-full">
               <label
                 htmlFor="status"
-                className="w-1/3 flex justify-start items-center"
+                className="w-full flex justify-start items-center flex-nowrap"
               >
                 {TASK_STATUS_LABEL}
               </label>

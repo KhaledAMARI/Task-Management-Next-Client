@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
       {isLoading && <Loader />}
-      <main className="w-full flex min-h-screen flex-col items-center justify-between p-24 bg-[#F7F9F2]">
+      <main className="w-full flex min-h-screen flex-col items-center justify-between lg:p-24 sm:py-5 bg-[#F7F9F2]">
         <div>
           <h1 className="text-[#3468C0] mb-4">{PAGE_TITLE}</h1>
         </div>

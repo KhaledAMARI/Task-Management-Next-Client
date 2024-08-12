@@ -5,7 +5,7 @@ import Card from "../Card";
 
 const BoardColumn: FC<BoardColumnProps> = ({ title, data }) => {
   return (
-    <div className="w-1/3 bg-gray-200 p-4 rounded-md min-h-dvh">
+    <div className="sm:w-full sm:pt-3 lg:w-1/3 bg-gray-200 lg:p-4 rounded-md min-h-dvh">
       <h2 className="mb-4 bg-[#BBE9FF]">{title}</h2>
       <div className="w-full gap-5 flex-col h-full justify-center items-center">
         {data &&

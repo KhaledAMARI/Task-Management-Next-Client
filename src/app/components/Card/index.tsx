@@ -79,8 +79,11 @@ const Card: FC<CardProps> = ({ id, title, description, status }) => {
       className="w-3/4 border rounded-md bg-white h-auto m-3 flex-col items-between p-2 text-black hover:cursor-pointer relative"
     >
       <div className="relative flex justify-between">
-        <div onClick={(e) => console.log("second")} className="flex gap-1 mb-3">
-          <span>{id}</span> - <h2>{title}</h2>
+        <div
+          onClick={(e) => console.log("second")}
+          className="flex gap-1 mb-3 text-ellipsis overflow-hidden"
+        >
+          <span>{id}</span> - <h2 className="line-clamp-3">{title}</h2>
         </div>
         {isCardHovered && (
           <button onClick={handleDeletion}>
