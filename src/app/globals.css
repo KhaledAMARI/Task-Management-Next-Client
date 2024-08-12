@@ -38,3 +38,17 @@ body {
     text-overflow: ellipsis;
   }
 }
+
+@layer base {
+  h1 {
+    @apply text-3xl md:text-5xl lg:text-5xl xl:text-5xl text-center font-mono;
+  }
+
+  h2 {
+    @apply text-xl md:text-3xl lg:text-3xl xl:text-3xl text-center font-mono;
+  }
+
+  p {
+    @apply text-base text-center font-mono;
+  }
+}

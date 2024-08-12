@@ -85,7 +85,7 @@ const EditTask = () => {
             <ArrowCircleLeftIcon style={{ transform: "scale(2)" }} />
           </button>
         </div>
-        <h2 className="text-center font-bold text-7xl mb-4 text-[#10439F]">
+        <h2 className="mb-4 text-[#10439F]">
           {EDIT_TASK_LABEL} - {taskId}
         </h2>
       </div>

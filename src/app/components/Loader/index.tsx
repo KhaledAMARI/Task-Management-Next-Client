@@ -1,4 +1,3 @@
-import { LOADING_LABEL } from "@/app/constants";
 import React from "react";
 
 const Loader = () => {

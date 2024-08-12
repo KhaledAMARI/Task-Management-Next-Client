@@ -7,7 +7,16 @@ import { useTaskStore } from "./store";
 import { useTaskStoreProps } from "./store/interface";
 import Loader from "./components/Loader";
 import Toast from "./components/Toast";
-import { DONE_LABEL, INPROGRESS_LABEL, PENDING_LABEL } from "./constants";
+import {
+  ADD_NEW_TASK_LABEL,
+  DONE_LABEL,
+  DONE_VALUE,
+  INPROGRESS_LABEL,
+  INPROGRESS_VALUE,
+  PAGE_TITLE,
+  PENDING_LABEL,
+  PENDING_VALUE,
+} from "./constants";
 
 export default function Home() {
   const router = useRouter();
@@ -41,11 +50,9 @@ export default function Home() {
   return (
     <>
       {isLoading && <Loader />}
-      <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-[#F7F9F2]">
+      <main className="w-full flex min-h-screen flex-col items-center justify-between p-24 bg-[#F7F9F2]">
         <div>
-          <h1 className="text-[#3468C0] font-bold text-7xl mb-4">
-            Task Management Board
-          </h1>
+          <h1 className="text-[#3468C0] mb-4">{PAGE_TITLE}</h1>
         </div>
         <select
           value={taskType}
@@ -53,11 +60,11 @@ export default function Home() {
           className="p-3 bg-[#86B6F6] text-[#10439F] rounded-lg"
         >
           <option value="" disabled>
-            Add New Task
+            {ADD_NEW_TASK_LABEL}
           </option>
-          <option value="pending">{PENDING_LABEL}</option>
-          <option value="in-progress">{INPROGRESS_LABEL}</option>
-          <option value="done">{DONE_LABEL}</option>
+          <option value={PENDING_VALUE}>{PENDING_LABEL}</option>
+          <option value={INPROGRESS_VALUE}>{INPROGRESS_LABEL}</option>
+          <option value={DONE_VALUE}>{DONE_LABEL}</option>
         </select>
         <Board />
       </main>

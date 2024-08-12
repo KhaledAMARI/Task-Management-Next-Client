@@ -15,6 +15,7 @@ export const DONE_VALUE: string = 'done';
 export const TASK_TITLE_LABEL: string = 'Task Title';
 export const TASK_DESCRIPTION_LABEL: string = 'Task Description';
 export const TASK_STATUS_LABEL: string = 'Task Status';
+export const ADD_NEW_TASK_LABEL: string = 'Add New Task';
 
 export const LOADING_LABEL: string = 'Loading...';
 export const PROCESSING_LABEL: string = 'Processing ...';
